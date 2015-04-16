@@ -9,5 +9,13 @@ sub figure {
 	Graphics::Bokeh::Figure->new(@_);
 }
 
+sub hplot {
+	...
+}
+
+sub vplot {
+	...
+}
+
 
 1;
