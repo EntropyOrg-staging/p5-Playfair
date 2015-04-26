@@ -30,15 +30,16 @@ package Graphics::Bokeh::Chart::Role::Legend {
 };
 
 package Graphics::Bokeh::ChartRole {
-	with qw(Graphics::Bokeh::Chart::Role::Title)
-	width (int): the width of your plot in pixels.
-	height (int): the height of you plot in pixels.
-	tools (str or bool): to enable or disable the tools in your chart.
-	palette (list): a list containing the colormap as hex values.
-	filename (str or bool): the name of the file where your chart will be written.
-	server (str or bool): the name of your chart in the server.
-	notebook (bool):if you want to output (or not) your chart into the IPython notebook.
-}
+	use Moo;
+	with map { "Graphics::Bokeh::Chart::Role::$_" } qw(Title XAxis YAxis Legend);
+	#width (int): the width of your plot in pixels.
+	#height (int): the height of you plot in pixels.
+	#tools (str or bool): to enable or disable the tools in your chart.
+	#palette (list): a list containing the colormap as hex values.
+	#filename (str or bool): the name of the file where your chart will be written.
+	#server (str or bool): the name of your chart in the server.
+	#notebook (bool):if you want to output (or not) your chart into the IPython notebook.
+};
 
 package Graphics::Bokeh::Chart::Area       { has [qw(values)]  };
 package Graphics::Bokeh::Chart::Bar        { ...  };
