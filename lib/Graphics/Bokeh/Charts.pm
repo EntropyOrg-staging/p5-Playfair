@@ -29,11 +29,19 @@ package Graphics::Bokeh::Chart::Role::Legend {
 	has legend => ( is => 'ro', isa => Str|Bool, doc => 'The legend of your chart.' );
 };
 
+# TODO this should probably be an aspect of the output, not the chart itself
+package Graphics::Bokeh::Chart::Role::PlotSize {
+	use Moo;
+	use Types::Standard qw( Int );
+	has width => ( is => 'ro', isa => Int, doc => 'The width of your plot in pixels.' );
+	has height => ( is => 'ro', isa => Int, doc => 'The height of you plot in pixels.' );
+};
+
+
+
 package Graphics::Bokeh::ChartRole {
 	use Moo;
-	with map { "Graphics::Bokeh::Chart::Role::$_" } qw(Title XAxis YAxis Legend);
-	#width (int): the width of your plot in pixels.
-	#height (int): the height of you plot in pixels.
+	with map { "Graphics::Bokeh::Chart::Role::$_" } qw(Title XAxis YAxis Legend PlotSize);
 	#tools (str or bool): to enable or disable the tools in your chart.
 	#palette (list): a list containing the colormap as hex values.
 	#filename (str or bool): the name of the file where your chart will be written.
@@ -41,7 +49,10 @@ package Graphics::Bokeh::ChartRole {
 	#notebook (bool):if you want to output (or not) your chart into the IPython notebook.
 };
 
-package Graphics::Bokeh::Chart::Area       { has [qw(values)]  };
+package Graphics::Bokeh::Chart::Area       {
+	use Moo;
+	has [qw(values)];
+};
 package Graphics::Bokeh::Chart::Bar        { ...  };
 package Graphics::Bokeh::Chart::BoxPlot    { ...  };
 package Graphics::Bokeh::Chart::Donut      { ...  };
