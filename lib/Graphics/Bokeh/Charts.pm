@@ -51,7 +51,10 @@ package Graphics::Bokeh::ChartRole {
 
 package Graphics::Bokeh::Chart::Area       {
 	use Moo;
-	has [qw(values)];
+	use Types::Standard qw( Bool );
+	has values => ( is => 'ro', required => 1 );
+	has index => ( is => 'ro' );
+	has stacked => ( is => 'ro', isa => Bool );
 };
 package Graphics::Bokeh::Chart::Bar        { ...  };
 package Graphics::Bokeh::Chart::BoxPlot    { ...  };
