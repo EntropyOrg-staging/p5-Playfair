@@ -56,7 +56,14 @@ package Graphics::Bokeh::Chart::Area       {
 	has index => ( is => 'ro' );
 	has stacked => ( is => 'ro', isa => Bool );
 };
-package Graphics::Bokeh::Chart::Bar        { ...  };
+package Graphics::Bokeh::Chart::Bar        {
+	use Moo;
+	use Types::Standard qw( Bool );
+	has values => ( is => 'ro', required => 1 );
+	has cat => ( is => 'ro' );
+	has stacked => ( is => 'ro', isa => Bool );
+	has continuous_range => ( is => 'ro' );
+};
 package Graphics::Bokeh::Chart::BoxPlot    { ...  };
 package Graphics::Bokeh::Chart::Donut      { ...  };
 package Graphics::Bokeh::Chart::Dot        { ...  };
