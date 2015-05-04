@@ -1,4 +1,4 @@
-package Graphics::Bokeh::Data::Column;
+package Playfair::Data::Column;
 
 use strict;
 use warnings;

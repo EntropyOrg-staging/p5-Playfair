@@ -1,9 +1,9 @@
-package Graphics::Bokeh::Objects;
+package Playfair::Objects;
 
 use strict;
 use warnings;
 
-package Graphics::Bokeh::Figure {
+package Playfair::Figure {
 	use Moo;
 
 	has tools => ( is => 'rw', default => sub { "pan,wheel_zoom,box_zoom,save,resize,reset" }  );

@@ -1,4 +1,4 @@
-use Graphics::Bokeh::Plotting qw(figure output_file show);
+use Playfair::Plotting qw(figure output_file show);
 
 # prepare some data
 my $x = [1, 2, 3, 4, 5];

@@ -1,21 +1,21 @@
-package Graphics::Bokeh::Charts;
+package Playfair::Charts;
 
 use strict;
 use warnings;
 
-package Graphics::Bokeh::Chart::Role::Title {
+package Playfair::Chart::Role::Title {
 	use Moo;
 	use Types::Standard qw( Str Int );
 	has title => ( is => 'ro', isa => Str, doc => 'The title of your chart.' );
 };
-package Graphics::Bokeh::Chart::Role::XAxis {
+package Playfair::Chart::Role::XAxis {
 	use Moo;
 	use Types::Standard qw( Str Int Bool );
 	has xlabel => ( is => 'ro', isa => Str, doc => 'The x-axis label of your chart.' );
 	has xscale => ( is => 'ro', isa => Str, doc => 'The x-axis type scale of your chart.' );
 	has xgrid => ( is => 'ro', isa => Bool, doc => 'whether to draw an x-grid.' );
 };
-package Graphics::Bokeh::Chart::Role::YAxis {
+package Playfair::Chart::Role::YAxis {
 	use Moo;
 	use Types::Standard qw( Str Int Bool );
 	has ylabel => ( is => 'ro', isa => Str, doc => 'The y-axis label of your chart.' );
@@ -23,14 +23,14 @@ package Graphics::Bokeh::Chart::Role::YAxis {
 	has ygrid => ( is => 'ro', isa => Bool, doc => 'whether to draw an y-grid.' );
 };
 
-package Graphics::Bokeh::Chart::Role::Legend {
+package Playfair::Chart::Role::Legend {
 	use Moo;
 	use Types::Standard qw( Str Bool );
 	has legend => ( is => 'ro', isa => Str|Bool, doc => 'The legend of your chart.' );
 };
 
 # TODO this should probably be an aspect of the output, not the chart itself
-package Graphics::Bokeh::Chart::Role::PlotSize {
+package Playfair::Chart::Role::PlotSize {
 	use Moo;
 	use Types::Standard qw( Int );
 	has width => ( is => 'ro', isa => Int, doc => 'The width of your plot in pixels.' );
@@ -39,9 +39,9 @@ package Graphics::Bokeh::Chart::Role::PlotSize {
 
 
 
-package Graphics::Bokeh::ChartRole {
+package Playfair::ChartRole {
 	use Moo;
-	with map { "Graphics::Bokeh::Chart::Role::$_" } qw(Title XAxis YAxis Legend PlotSize);
+	with map { "Playfair::Chart::Role::$_" } qw(Title XAxis YAxis Legend PlotSize);
 	#tools (str or bool): to enable or disable the tools in your chart.
 	#palette (list): a list containing the colormap as hex values.
 	#filename (str or bool): the name of the file where your chart will be written.
@@ -49,14 +49,14 @@ package Graphics::Bokeh::ChartRole {
 	#notebook (bool):if you want to output (or not) your chart into the IPython notebook.
 };
 
-package Graphics::Bokeh::Chart::Area       {
+package Playfair::Chart::Area       {
 	use Moo;
 	use Types::Standard qw( Bool );
 	has values => ( is => 'ro', required => 1 );
 	has index => ( is => 'ro' );
 	has stacked => ( is => 'ro', isa => Bool );
 };
-package Graphics::Bokeh::Chart::Bar        {
+package Playfair::Chart::Bar        {
 	use Moo;
 	use Types::Standard qw( Bool );
 	has values => ( is => 'ro', required => 1 );
@@ -64,15 +64,15 @@ package Graphics::Bokeh::Chart::Bar        {
 	has stacked => ( is => 'ro', isa => Bool );
 	has continuous_range => ( is => 'ro' );
 };
-package Graphics::Bokeh::Chart::BoxPlot    { ...  };
-package Graphics::Bokeh::Chart::Donut      { ...  };
-package Graphics::Bokeh::Chart::Dot        { ...  };
-package Graphics::Bokeh::Chart::HeatMap    { ...  };
-package Graphics::Bokeh::Chart::Histogram  { ...  };
-package Graphics::Bokeh::Chart::Horizon    { ...  };
-package Graphics::Bokeh::Chart::Line       { ...  };
-package Graphics::Bokeh::Chart::Scatter    { ...  };
-package Graphics::Bokeh::Chart::Step       { ...  };
-package Graphics::Bokeh::Chart::Timeseries { ...  };
+package Playfair::Chart::BoxPlot    { ...  };
+package Playfair::Chart::Donut      { ...  };
+package Playfair::Chart::Dot        { ...  };
+package Playfair::Chart::HeatMap    { ...  };
+package Playfair::Chart::Histogram  { ...  };
+package Playfair::Chart::Horizon    { ...  };
+package Playfair::Chart::Line       { ...  };
+package Playfair::Chart::Scatter    { ...  };
+package Playfair::Chart::Step       { ...  };
+package Playfair::Chart::Timeseries { ...  };
 
 1;

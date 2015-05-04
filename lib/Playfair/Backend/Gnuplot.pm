@@ -1,4 +1,4 @@
-package Graphics::Bokeh::Backend::Gnuplot;
+package Playfair::Backend::Gnuplot;
 
 use strict;
 use warnings;
