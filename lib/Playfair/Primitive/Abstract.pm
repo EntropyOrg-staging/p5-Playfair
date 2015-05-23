@@ -23,7 +23,17 @@ package Playfair::Primitive::Rectangle {
 }
 package Playfair::Primitive::Polygon { ... }
 
-package Playfair::Primitive::AnnularWedge { ... }
+package Playfair::Primitive::AnnularWedge {
+# * x, y - center point coordinates
+# * start_radius
+# * end_radius
+# * start_angle
+# * end_angle
+# * direction
+#   * values: 'clock', 'anticlock'
+#   * default: 'anticlock'
+  ...
+}
 package Playfair::Primitive::Annulus { ... }
 package Playfair::Primitive::Arc { ... }
 package Playfair::Primitive::Bezier { ... }
