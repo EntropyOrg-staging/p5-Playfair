@@ -34,7 +34,14 @@ package Playfair::Primitive::AnnularWedge {
 #   * default: 'anticlock'
   ...
 }
-package Playfair::Primitive::Annulus { ... }
+package Playfair::Primitive::Annulus {
+# * x, y - center point coordinates
+# * start_radius
+# * end_radius
+# * Line Properties
+# * Fill Properties
+	...
+}
 package Playfair::Primitive::Arc { ... }
 package Playfair::Primitive::Bezier { ... }
 package Playfair::Primitive::Gear { ... }
