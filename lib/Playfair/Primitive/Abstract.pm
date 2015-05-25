@@ -2,6 +2,24 @@ package Playfair::Primitive::Abstract;
 
 use Modern::Perl;
 
+package Playfair::Style::Line {
+	use Moo;
+}
+
+package Playfair::Style::Fill {
+	use Moo;
+}
+
+package Playfair::Primitive::Style::Fillable {
+	use Moo::Role;
+	has fill_style => ( is => 'ro', isa => 'Playfair::Style::Fill' );
+};
+
+package Playfair::Primitive::Style::Lineable {
+	use Moo::Role;
+	has line_style => ( is => 'ro', isa => 'Playfair::Style::Line' );
+};
+
 package Playfair::Primitive::Point {
 	use Moo;
 	use Types::Standard;
