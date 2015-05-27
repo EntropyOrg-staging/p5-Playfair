@@ -53,6 +53,8 @@ package Playfair::Primitive::AnnularWedge {
   ...
 }
 package Playfair::Primitive::Annulus {
+	use Moo;
+	with qw(Playfair::Primitive::Style::Lineable Playfair::Primitive::Style::Fillable);
 # * x, y - center point coordinates
 # * start_radius
 # * end_radius
