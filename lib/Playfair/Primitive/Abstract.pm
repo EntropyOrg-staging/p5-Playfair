@@ -42,6 +42,7 @@ package Playfair::Primitive::Rectangle {
 package Playfair::Primitive::Polygon { ... }
 
 package Playfair::Primitive::AnnularWedge {
+	has center => ( is => 'rw', isa => 'Playfair::Primitive::Point' ); # TODO coerce?
 # * x, y - center point coordinates
 # * start_radius
 # * end_radius
