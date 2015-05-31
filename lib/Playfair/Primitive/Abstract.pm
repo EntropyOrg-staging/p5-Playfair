@@ -10,6 +10,10 @@ package Playfair::Style::Fill {
 	use Moo;
 }
 
+package Playfair::Style::Text {
+	use Moo;
+}
+
 package Playfair::Primitive::Style::Fillable {
 	use Moo::Role;
 	has fill_style => ( is => 'ro', isa => 'Playfair::Style::Fill' );
@@ -18,6 +22,11 @@ package Playfair::Primitive::Style::Fillable {
 package Playfair::Primitive::Style::Lineable {
 	use Moo::Role;
 	has line_style => ( is => 'ro', isa => 'Playfair::Style::Line' );
+};
+
+package Playfair::Primitive::Style::Textable {
+	use Moo::Role;
+	has text_style => ( is => 'ro', isa => 'Playfair::Style::Text' );
 };
 
 
@@ -42,6 +51,7 @@ package Playfair::Primitive::Point {
 package Playfair::Primitive::Circle {
 	use Moo;
 	use Types::Standard;
+	with qw(Playfair::Primitive::Style::Lineable Playfair::Primitive::Style::Fillable);
 
 	has center => ( handles => 'Playfair::Geometry::Role::Positionable' );
 	has radius => ( isa => 'Num' );
@@ -114,6 +124,7 @@ package Playfair::Primitive::Arc {
 }
 package Playfair::Primitive::Bezier {
 	use Moo;
+	with qw(Playfair::Primitive::Style::Lineable);
 #   The bezier glyph displays Bezier curves with the given starting, ending, and control points.
 #
 #     * x0, y0 - starting point coordinates
@@ -185,6 +196,7 @@ package Playfair::Primitive::ImageURL {
 }
 package Playfair::Primitive::Line {
 	use Moo;
+	with qw(Playfair::Primitive::Style::Lineable);
 #   The line glyph displays a single line that connects several points given by the arrays of coordinates x and y.
 #
 #     * x, y - line coordinates
@@ -193,6 +205,7 @@ package Playfair::Primitive::Line {
 }
 package Playfair::Primitive::MultiLine {
 	use Moo;
+	with qw(Playfair::Primitive::Style::Lineable);
 #   The multi_line glyph displays several lines, each with points given by the arrays of coordinates that are the elements of xs and ys. This glyph is especially useful for implementing parallel coordinates plots, or plotting several aligned series simultaneously.
 #
 #   Note
@@ -205,6 +218,7 @@ package Playfair::Primitive::MultiLine {
 }
 package Playfair::Primitive::Oval {
 	use Moo;
+	with qw(Playfair::Primitive::Style::Lineable Playfair::Primitive::Style::Fillable);
 #   The oval glyph displays ovals centered on the given coordinates with the given dimensions and angle.
 #
 #     * x, y - center point coordinates
@@ -220,6 +234,7 @@ package Playfair::Primitive::Oval {
 }
 package Playfair::Primitive::Patch {
 	use Moo;
+	with qw(Playfair::Primitive::Style::Lineable Playfair::Primitive::Style::Fillable);
 #   The patch glyph displays a single polygonal patch that connects several points given by the arrays of coordinates x and y.
 #
 #     * x, y - coordinates
@@ -229,6 +244,7 @@ package Playfair::Primitive::Patch {
 }
 package Playfair::Primitive::Patches {
 	use Moo;
+	with qw(Playfair::Primitive::Style::Lineable Playfair::Primitive::Style::Fillable);
 #   The patches glyph displays several patches, each with points given by the arrays of coordinates that are the elements of xs and ys. This glyph is especially useful for implementing stacked area charts and cartograms.
 #
 #   Note
@@ -242,6 +258,7 @@ package Playfair::Primitive::Patches {
 }
 package Playfair::Primitive::Quad {
 	use Moo;
+	with qw(Playfair::Primitive::Style::Lineable Playfair::Primitive::Style::Fillable);
 #   The quad glyph displays axis-aligned rectangles with the given dimensions.
 #
 #     * left
@@ -254,6 +271,7 @@ package Playfair::Primitive::Quad {
 }
 package Playfair::Primitive::Quadratic {
 	use Moo;
+	with qw(Playfair::Primitive::Style::Lineable);
 #   The quadratic glyph displays quadratic curves with the given starting, ending, and control points.
 #
 #     * x0, y0 - starting point coordinates
@@ -264,6 +282,7 @@ package Playfair::Primitive::Quadratic {
 }
 package Playfair::Primitive::Ray {
 	use Moo;
+	with qw(Playfair::Primitive::Style::Lineable);
 #   The ray glyph displays line segments starting at the given coordinate and extending the given length at the given angle.
 #
 #     * x0, y0 - starting point coordinates
@@ -277,6 +296,7 @@ package Playfair::Primitive::Ray {
 }
 package Playfair::Primitive::Segment {
 	use Moo;
+	with qw(Playfair::Primitive::Style::Lineable);
 #   The segment glyph displays line segments with the given starting and ending coordinates.
 #
 #     * x0, y0 - starting point coordinates
@@ -286,6 +306,7 @@ package Playfair::Primitive::Segment {
 }
 package Playfair::Primitive::Text {
 	use Moo;
+	with qw(Playfair::Primitive::Style::Textable);
 #   The text glyph displays text at the given coordinates rotated by the given angle. The location of the coordinates relative to the text is indicated by the text properties.
 #
 #     * x, y - text coordinates (positioning determined by text properties)
@@ -299,6 +320,7 @@ package Playfair::Primitive::Text {
 }
 package Playfair::Primitive::Wedge {
 	use Moo;
+	with qw(Playfair::Primitive::Style::Lineable Playfair::Primitive::Style::Fillable);
 #   The annular_wedge glyph displays circular wedges centered at the given coordinates with the corresponding radius, start_angle and end_angle.
 #
 #   Note
@@ -321,6 +343,7 @@ package Playfair::Primitive::Wedge {
 
 package Playfair::Primitive::Asterisk {
 	use Moo;
+	with qw(Playfair::Primitive::Style::Lineable);
 #     * x, y - center point coordinates
 #     * size
 #     * Line Properties
@@ -329,6 +352,7 @@ package Playfair::Primitive::Asterisk {
 }
 package Playfair::Primitive::CircleCross {
 	use Moo;
+	with qw(Playfair::Primitive::Style::Lineable Playfair::Primitive::Style::Fillable);
 #     * x, y - center point coordinates
 #     * size
 #     * Line Properties
@@ -338,6 +362,7 @@ package Playfair::Primitive::CircleCross {
 }
 package Playfair::Primitive::CircleX {
 	use Moo;
+	with qw(Playfair::Primitive::Style::Lineable Playfair::Primitive::Style::Fillable);
 #     * x, y - center point coordinates
 #     * size
 #     * Line Properties
@@ -346,6 +371,7 @@ package Playfair::Primitive::CircleX {
 }
 package Playfair::Primitive::Cross {
 	use Moo;
+	with qw(Playfair::Primitive::Style::Lineable);
 #     * x, y - center point coordinates
 #     * size
 #     * Line Properties
@@ -353,6 +379,7 @@ package Playfair::Primitive::Cross {
 }
 package Playfair::Primitive::Diamond {
 	use Moo;
+	with qw(Playfair::Primitive::Style::Lineable Playfair::Primitive::Style::Fillable);
 #     * x, y - center point coordinates
 #     * size
 #     * Line Properties
@@ -361,6 +388,7 @@ package Playfair::Primitive::Diamond {
 }
 package Playfair::Primitive::DiamondCross {
 	use Moo;
+	with qw(Playfair::Primitive::Style::Lineable Playfair::Primitive::Style::Fillable);
 #     * x, y - center point coordinates
 #     * size
 #     * Line Properties
@@ -369,6 +397,7 @@ package Playfair::Primitive::DiamondCross {
 }
 package Playfair::Primitive::InvertedTriangle {
 	use Moo;
+	with qw(Playfair::Primitive::Style::Lineable Playfair::Primitive::Style::Fillable);
 #   The inverted_triangle glyph is a marker that displays upside-down triangles at the given coordinates.
 #
 #     * x, y - center point coordinates
@@ -379,6 +408,7 @@ package Playfair::Primitive::InvertedTriangle {
 }
 package Playfair::Primitive::Square {
 	use Moo;
+	with qw(Playfair::Primitive::Style::Lineable Playfair::Primitive::Style::Fillable);
 #   The square glyph is a marker that displays squares at the given coordinates.
 #
 #     * x, y - center point coordinates
@@ -389,6 +419,7 @@ package Playfair::Primitive::Square {
 }
 package Playfair::Primitive::SquareCross {
 	use Moo;
+	with qw(Playfair::Primitive::Style::Lineable Playfair::Primitive::Style::Fillable);
 #   The square_cross glyph is a marker that displays squares together with a crossbar (+) at the given coordinates.
 #
 #     * x, y - center point coordinates
@@ -399,6 +430,7 @@ package Playfair::Primitive::SquareCross {
 }
 package Playfair::Primitive::SquareX {
 	use Moo;
+	with qw(Playfair::Primitive::Style::Lineable Playfair::Primitive::Style::Fillable);
 #   The square_x glyph is a marker that displays squares together with an X at the given coordinates.
 #
 #     * x, y - center point coordinates
@@ -409,6 +441,7 @@ package Playfair::Primitive::SquareX {
 }
 package Playfair::Primitive::Triangle {
 	use Moo;
+	with qw(Playfair::Primitive::Style::Lineable Playfair::Primitive::Style::Fillable);
 #   The triangle glyph is a marker that displays triangles at the given coordinates.
 #
 #     * x, y - center point coordinates
@@ -419,6 +452,7 @@ package Playfair::Primitive::Triangle {
 }
 package Playfair::Primitive::X {
 	use Moo;
+	with qw(Playfair::Primitive::Style::Lineable Playfair::Primitive::Style::Fillable);
 #   The x glyph is a marker that displays X symbols at the given coordinates.
 #
 #     * x, y - center point coordinates
