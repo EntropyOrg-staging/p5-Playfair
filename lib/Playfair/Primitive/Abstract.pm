@@ -91,12 +91,13 @@ package Playfair::Primitive::Polygon {
 
 package Playfair::Primitive::AnnularWedge {
 	use Moo;
+	use Playfair::Types;
 	with qw(Playfair::Primitive::Style::Lineable Playfair::Primitive::Style::Fillable);
 
 	has center => ( is => 'rw', handles => 'Playfair::Geometry::Role::Positionable' ); # TODO coerce?
 	has [ qw(start_radius end_radius) ] => ( is => 'rw', isa => 'Num' );
 	has [ qw(start_angle end_angle) ] => ( is => 'rw', isa => 'Num' );
-	has [ qw(angular_direction) ] => ( is => 'rw', isa => 'Str', default => sub { 'anticlock' }  ); # * values: 'clock', 'anticlock'
+	has [ qw(angular_direction) ] => ( is => 'rw', isa => 'AngularDirection', default => sub { 'anticlock' }  ); # * values: 'clock', 'anticlock'
 }
 package Playfair::Primitive::Annulus {
 	use Moo;
