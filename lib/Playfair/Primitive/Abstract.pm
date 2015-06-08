@@ -4,14 +4,21 @@ use Modern::Perl;
 
 package Playfair::Style::Line {
 	use Moo;
+
+	has color => ( is => 'rw' );
 }
 
 package Playfair::Style::Fill {
 	use Moo;
+
+	has color => ( is => 'rw' );
 }
 
 package Playfair::Style::Text {
 	use Moo;
+
+	has font => ( is => 'rw' );
+	has alignment => ( is => 'rw' );
 }
 
 package Playfair::Primitive::Style::Fillable {
