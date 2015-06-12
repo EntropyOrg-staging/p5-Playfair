@@ -14,6 +14,10 @@ package Playfair::Style::Fill {
 	has color => ( is => 'rw' );
 }
 
+package Playfair::Style::Element::Font {
+	...
+};
+
 package Playfair::Style::Text {
 	use Moo;
 
