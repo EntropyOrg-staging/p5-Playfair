@@ -1,17 +1,15 @@
-use Playfair::Plotting qw(figure output_file show);
+use Playfair::Plotting qw(figure line_chart);
+
+use strict;
+use warnings;
 
 # prepare some data
 my $x = [1, 2, 3, 4, 5];
 my $y = [6, 7, 2, 4, 5];
 
-# output to static HTML file
-output_file("lines.html", title="line plot example")
+my $line_chart = line_chart( x => $x, y => $y );
 
-# create a new plot with a title and axis labels
-my $p = figure(title="simple line example", x_axis_label='x', y_axis_label='y')
+my $fig = figure( title => "simple line example", xlabel => "x-axis label", ylabel => "y-axis label", legend => 1);
+$fig->add( $line_chart );
 
-# add a line renderer with legend and line thickness
-p.line(x, y, legend="Temp.", line_width=2)
-
-# show the results
-show(p)
+$fig->output( device => 'bokeh', file => 'example-line-chart.html' );
